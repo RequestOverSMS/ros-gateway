@@ -55,7 +55,7 @@ Referencia:
  - D: Implementado
  - N: No Implementado 
 
-## Validacion
+## Validación
 
 El gateway está corriendo en la nube en una instancia propia de AWS EC2 y se utilizó el servicio de SMS Twilio para intercambiar mensajes y validar el funcionamiento del sistema.
 
@@ -67,6 +67,9 @@ USD, EUR y GBP. Este resultado es recibido por el gateway y se envían los datos
 ![image](documentation/EntradaSalida.png)
 
 Los resultados incluyen los watermarks de la cuenta trial de Twilio.
+El pipeline de procesamiento se pudo validar con los logs del servidor.
+![image](documentation/Procesamiento ROS GW.png)
+![image](documentation/Procesamiento ROS GW 2.png)
 
 ## Futuras mejoras
 
