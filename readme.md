@@ -68,8 +68,11 @@ USD, EUR y GBP. Este resultado es recibido por el gateway y se envían los datos
 
 Los resultados incluyen los watermarks de la cuenta trial de Twilio.
 El pipeline de procesamiento se pudo validar con los logs del servidor.
-![image](documentation/Procesamiento ROS GW.png)
-![image](documentation/Procesamiento ROS GW 2.png)
+
+
+![image](documentation/ProcesamientoServer.png)
+![image](documentation/ProcesamientoServer2.png)
+
 
 ## Futuras mejoras
 
