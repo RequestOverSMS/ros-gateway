@@ -28,15 +28,15 @@ siguiendo los siguientes pasos:
  2) Se comprime el binario del protobuf.
  3) Se encriptan los datos comprimidos.
  4) Se codifican en base64.
- 5) Se envian los datos por SMS.
+ 5) Se envían los datos por SMS.
 
 Para de-codificar el protooclo:
 
- 1) Se recive el SMS
+ 1) Se recibe el SMS.
  2) Se convierte base64 a binario.
  3) Se desencriptan los datos.
  4) Se descomprimen los datos.
- 5) Se convierte el protobuf a JSON
+ 5) Se convierte el protobuf a JSON.
 
 Los datos enviados al servidor son interpretados para generar una consulta
 al servidor de destino.
@@ -52,27 +52,27 @@ Los features del gateway son:
  - N - Response por SMS
 
 Referencia:
- - D: Implementadp
+ - D: Implementado
  - N: No Implementado 
 
 ## Validacion
 
-Se utilizo el servicio de SMS Twilio para validar el funcionamiento del servicio.
+Se utilizó el servicio de SMS Twilio para validar el funcionamiento del servicio.
 
-Para ello se envió un request por sms para realizar una consulta a la api de 
-coin desk que devuelve el precio del BTC en 
+Para ello se envió un request por SMS para realizar una consulta a la API de 
+Coindesk que devuelve el precio del BTC en 
 USD, EUR y GBP.
 
 
 ![image](documentation/EntradaSalida.png)
 
-Los resultados incluyen los watermarks de la cuenta trial de twilio.
+Los resultados incluyen los watermarks de la cuenta trial de Twilio.
 
 ## Futuras mejoras
 
 Se plantean como futuras mejoras:
- - Separación en tareas asincronicas para implementar pipline de procesamiento resiliente y eficiente
- - Manejo de usuarios con permisos para distintas apis.
+ - Separación en tareas asincrónicas para implementar pipeline de procesamiento resiliente y eficiente.
+ - Manejo de usuarios con permisos para distintas APIs.
  - Manejo de errores y autodetección de formato.
 
 
