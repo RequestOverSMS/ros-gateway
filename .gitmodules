@@ -1,0 +1,3 @@
+[submodule "ros-messages"]
+	path = ros-messages
+	url = https://github.com/RequestOverSMS/ros-messages.git
