@@ -15,13 +15,13 @@ import os
 from dotenv import load_dotenv
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
 
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-os.environ['BASE_DIR'] = BASE_DIR
+# os.environ['BASE_DIR'] = BASE_DIR
 
 
 # Quick-start development settings - unsuitable for production
