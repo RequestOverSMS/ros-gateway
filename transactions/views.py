@@ -35,12 +35,11 @@ class ROSView(APIView):
             ros_received.ParseFromString(body)
             ros_message_received = MessageToJson(ros_received)
 
-            ros_message_dict = MessageToJson(ros_message_received)
 
-            headers = ros_message_dict['headers']
-            body = ros_message_dict['body']
-            method = ros_message_dict['method']
-            uri = ros_message_dict['uri']
+            headers = ros_message_received['headers']
+            body = ros_message_received['body']
+            method = ros_message_received['method']
+            uri = ros_message_received['uri']
 
             if uri == "https://api.mercadopago.com/v1/payments" and method == Method.GET:
                 response = requests.request(method, uri, headers=headers, data=body)
