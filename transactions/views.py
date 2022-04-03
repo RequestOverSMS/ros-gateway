@@ -3,10 +3,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from google.protobuf.json_format import MessageToJson
-from v1_payments_request_pb2 import v1_payments_request
-from ROSRequest_pb2 import ROSRequest
-from ROSEnums_pb2 import Method
-from HTTPHeaders_pb2 import Headers
+from transactions.v1_payments_request_pb2 import v1_payments_request
+from transactions.ROSRequest_pb2 import ROSRequest
+from transactions.ROSEnums_pb2 import Method
+from transactions.HTTPHeaders_pb2 import Headers
 import json
 import base64
 import zlib
@@ -28,7 +28,7 @@ class ROSView(APIView):
             # Parse protobuf
             ros_received = ROSRequest()
             ros_received.ParseFromString(body)
-            # ros_message_received = MessageToJson(ros_received)
+            ros_message_received = MessageToJson(ros_received)
 
             if ros_received.uri == "https://api.mercadopago.com/v1/payments" and ros_received.method == Method.GET:
                 headers = Headers()

@@ -12,7 +12,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import ROSEnums_pb2 as ROSEnums__pb2
+from . import ROSEnums_pb2 as ROSEnums__pb2
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10ROSRequest.proto\x1a\x0eROSEnums.proto\"o\n\nROSRequest\x12\x1c\n\x04type\x18\x01 \x01(\x0e\x32\x05.Type:\x07REQUEST\x12\x17\n\x06method\x18\x02 \x01(\x0e\x32\x07.Method\x12\x0b\n\x03uri\x18\x04 \x01(\t\x12\x0f\n\x07headers\x18\x05 \x01(\x0c\x12\x0c\n\x04\x62ody\x18\x06 \x01(\x0c')
