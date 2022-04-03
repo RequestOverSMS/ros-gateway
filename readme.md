@@ -49,11 +49,11 @@ Los features del gateway son:
  - D - Recibir SMS 
  - D - Interpretación de protocolo ROS
  - D - Realizar consultas en el servidor del cliente
- - N - Response por SMS
+ - P - Response por SMS
 
 Referencia:
  - D: Implementado
- - N: No Implementado 
+ - P: Implementado parcialmente
 
 ## Validación
 
