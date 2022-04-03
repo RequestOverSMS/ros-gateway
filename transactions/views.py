@@ -7,6 +7,7 @@ from google.protobuf.json_format import Parse, ParseDict
 from transactions.v1_payments_request_pb2 import v1_payments_request
 from transactions.v1_btcmarket_response_pb2 import v1_btcmarket_response
 from transactions.ROSRequest_pb2 import ROSRequest
+from transactions.ROSResponse_pb2 import ROSResponse
 from transactions.ROSEnums_pb2 import Method
 from transactions.HTTPHeaders_pb2 import Headers
 import json
@@ -41,12 +42,18 @@ class ROSView(APIView):
             ros_received = ROSRequest()
             ros_received.ParseFromString(body)
             ros_message_received = MessageToJson(ros_received)
+            print(ros_message_received)
 
+            # headers = ros_message_received['headers'] if 'headers' in ros_message_received else ''
+            # body = ros_message_received['body'] if 'body' in ros_message_received else ''
+            # method = ros_message_received['method']
+            # uri = ros_message_received['uri']
 
-            headers = ros_message_received['headers']
-            body = ros_message_received['body']
-            method = ros_message_received['method']
-            uri = ros_message_received['uri']
+            headers = ros_received.headers
+            body = ros_received.body
+            method = Method.keys()[ros_received.method]
+            uri = ros_received.uri
+            print(headers, body, method, uri)
 
             if uri == "https://api.mercadopago.com/v1/payments" and method == Method.GET:
                 response = requests.request(method, uri, headers=headers, data=body)
@@ -70,16 +77,16 @@ class ROSView(APIView):
             #     print("BODY:")
             #     print(body_received)
 
-            if uri == 'https://api.coindesk.com/v1/bpi/currentprice.json' and method == Method.GET:
+            if uri == 'https://api.coindesk.com/v1/bpi/currentprice.json' and method == 'GET':
                 response = requests.request(method, uri, headers=headers, data=body)
                 print('Received response')
-                print(response.content)
+                print(response.content, response.headers)
+                body = ParseDict(json.loads(response.content), v1_btcmarket_response()).SerializeToString()
+                # headers = ParseDict(json.loads(response.headers), Headers()).SerializeToString()
 
-                body = ParseDict(response.content, v1_btcmarket_response()).SerializeToString()
-
-                ros = ROSRequest()
+                ros = ROSResponse()
                 ros.method = ros_received.method
-                ros.uri = ros_received.uri
+                ros.code = response.status_code
                 # ros.headers = headers
                 ros.body = body
 
