@@ -57,11 +57,11 @@ Referencia:
 
 ## Validacion
 
-Se utilizó el servicio de SMS Twilio para validar el funcionamiento del servicio.
+El gateway está corriendo en la nube en una instancia propia de AWS EC2 y se utilizó el servicio de SMS Twilio para intercambiar mensajes y validar el funcionamiento del sistema.
 
-Para ello se envió un request por SMS para realizar una consulta a la API de 
-Coindesk que devuelve el precio del BTC en 
-USD, EUR y GBP.
+Para ello se envió un request por SMS desde un celular para realizar una consulta a la API de 
+Coindesk, que devuelve el precio del BTC en 
+USD, EUR y GBP. Este resultado es recibido por el gateway y se envían los datos nuevamente por SMS al celular.
 
 
 ![image](documentation/EntradaSalida.png)
