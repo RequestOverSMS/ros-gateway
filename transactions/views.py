@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from google.protobuf.json_format import MessageToJson
 from google.protobuf.json_format import Parse, ParseDict
 from transactions.v1_payments_request_pb2 import v1_payments_request
+from transactions.v1_btcmarket_response_pb2 import v1_btcmarket_response
 from transactions.ROSRequest_pb2 import ROSRequest
 from transactions.ROSEnums_pb2 import Method
 from transactions.HTTPHeaders_pb2 import Headers
@@ -70,36 +71,25 @@ class ROSView(APIView):
             #     print("BODY:")
             #     print(body_received)
 
-            if ros_received.uri == 'https://be.buenbit.com/api/market/tickers/' and ros_received.method == Method.GET:
-                # body = v1_payments_request()
-                # body.ParseFromString(ros_received.body)
-                # body_received = MessageToJson(body)
-                #
-                # print("HEADERS:")
-                # print(headers_received)
-                # print()
-                # print("BODY:")
-                # print(body_received)
+            if uri == 'https://api.coindesk.com/v1/bpi/currentprice.json' and method == Method.GET:
+                response = requests.request(method, uri, headers=headers, data=body)
+                print('Received response')
+                print(response.content)
 
-                r = request.get(ros_received.uri)
-                body_tosend = r.json()
-
-                body = ParseDict(body_tosend, v1_payments_request()).SerializeToString()
+                body = ParseDict(response.content, v1_btcmarket_response()).SerializeToString()
 
                 ros = ROSRequest()
                 ros.method = ros_received.method
                 ros.uri = ros_received.uri
-                ros.headers = headers
+                # ros.headers = headers
                 ros.body = body
 
-                ros_plain = f"{ros}"
                 ros_str = ros.SerializeToString()
-
+                print('Processing protobuf', ros_str)
                 body_compressed = zlib.compress(ros_str, level=9)
-                plain_compressed = zlib.compress(str.encode(ros_plain), level=9)
-
+                print('Processing compress', body_compressed)
                 body_encoded = base64.b64encode(body_compressed)
-                plain_encoded = base64.b64encode(plain_compressed)
+                print('Processing encoded', body_encoded)
 
                 account_sid = settings.TWILIO_ACCOUNT_ID
                 auth_token = settings.TWILIO_AUTH_TOKEN
