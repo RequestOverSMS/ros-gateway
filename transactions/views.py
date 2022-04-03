@@ -17,15 +17,20 @@ import zlib
 class ROSView(APIView):
     def get(self, request):
         try:
+            print('Starting processing pipeline...')
             message = request.query_params.get('Body', "")
+            message = message.replace(' ', '+')
 
             # Decode
+            print('Starting decoding with ', message)
             body_compressed = base64.b64decode(message)
 
             # Decompress
+            print('Starting decompressing with ', body_compressed)
             body = zlib.decompress(body_compressed)
 
             # Parse protobuf
+            print('Starting protobuf decoding with ', body)
             ros_received = ROSRequest()
             ros_received.ParseFromString(body)
             ros_message_received = MessageToJson(ros_received)
