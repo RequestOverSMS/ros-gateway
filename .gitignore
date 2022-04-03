@@ -119,3 +119,4 @@ fabric.properties
 /.idea
 /__pycache__/
 .env
+/.venv/

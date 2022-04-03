@@ -41,20 +41,34 @@ class ROSView(APIView):
             ros_received.ParseFromString(body)
             ros_message_received = MessageToJson(ros_received)
 
-            if ros_received.uri == "https://api.mercadopago.com/v1/payments" and ros_received.method == Method.GET:
-                headers = Headers()
-                headers.ParseFromString(ros_received.headers)
-                headers_received = MessageToJson(headers)
+            ros_message_dict = MessageToJson(ros_message_received)
 
-                body = v1_payments_request()
-                body.ParseFromString(ros_received.body)
-                body_received = MessageToJson(body)
+            headers = ros_message_dict['headers']
+            body = ros_message_dict['body']
+            method = ros_message_dict['method']
+            uri = ros_message_dict['uri']
 
-                print("HEADERS:")
-                print(headers_received)
-                print()
-                print("BODY:")
-                print(body_received)
+            if uri == "https://api.mercadopago.com/v1/payments" and method == Method.GET:
+                response = requests.request(method, uri, headers=headers, data=body)
+                print('Received response')
+                print(response.content)
+
+            #
+            #
+            # if ros_received.uri == "https://api.mercadopago.com/v1/payments" and ros_received.method == Method.GET:
+            #     headers = Headers()
+            #     headers.ParseFromString(ros_received.headers)
+            #     headers_received = MessageToJson(headers)
+            #
+            #     body = v1_payments_request()
+            #     body.ParseFromString(ros_received.body)
+            #     body_received = MessageToJson(body)
+            #
+            #     print("HEADERS:")
+            #     print(headers_received)
+            #     print()
+            #     print("BODY:")
+            #     print(body_received)
 
             if ros_received.uri == 'https://be.buenbit.com/api/market/tickers/' and ros_received.method == Method.GET:
                 # body = v1_payments_request()
@@ -96,7 +110,6 @@ class ROSView(APIView):
                     from_='+16064044957',
                     to=from_number
                 )
-
             return Response(data="ROS successful request", status=200)
         except Exception as e:
             print(e)
