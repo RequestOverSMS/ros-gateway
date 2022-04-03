@@ -55,6 +55,19 @@ Referencia:
  - D: Implementadp
  - N: No Implementado 
 
+## Validacion
+
+Se utilizo el servicio de SMS Twilio para validar el funcionamiento del servicio.
+
+Para ello se envió un request por sms para realizar una consulta a la api de 
+coin desk que devuelve el precio del BTC en 
+USD, EUR y GBP.
+
+
+![image](documentation/EntradaSalida.png)
+
+Los resultados incluyen los watermarks de la cuenta trial de twilio.
+
 ## Futuras mejoras
 
 Se plantean como futuras mejoras:
