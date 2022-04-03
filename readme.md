@@ -1,6 +1,6 @@
 # ROS-GATEWAY
 
-Proyecto desarrollado para el hackit-ba 2022 por Maximiliano Zitelli, Tobias Lifschitz y Santiago Ivulich.
+Proyecto desarrollado para el HackIT-BA 2022 por Maximiliano Zitelli, Tobías Lifschitz y Santiago Ivulich.
 
 ## Resumen
 
