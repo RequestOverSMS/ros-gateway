@@ -118,3 +118,4 @@ fabric.properties
 !/*/migrations/__init__.py
 /.idea
 /__pycache__/
+.env
